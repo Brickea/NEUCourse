@@ -1,0 +1,14 @@
+Steps to Install MySQL
+1) Download MySQL
+https://dev.mysql.com/downloads/mysql/
+
+2) Open terminal and execute following commands:
+- export PATH=$PATH:/usr/local/mysql/bin
+- echo 'export PATH=$PATH:/usr/local/mysql/bin' >> ~/.bash_profile
+- source ~/.bash_profile
+
+Download Workbench from here: 
+https://dev.mysql.com/downloads/workbench/
+
+
+3) run mysql --version

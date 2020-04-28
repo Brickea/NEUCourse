@@ -1,0 +1,3 @@
+212.235.5.188 - [08/Feb/2009:03:09:56 -0600] "GET HTTP/1.1 HTTP/1.1" 400 303 "-" "Toata dragostea mea pentru diavola"
+212.235.5.188 - [08/Feb/2009:03:09:57 -0600] "GET /roundcube//bin/msgimport HTTP/1.1" 404 299 "-" "Toata dragostea mea pentru diavola"
+66.249.67.117 - [08/Feb/2009:04:51:34 -0600] "GET /robots.txt HTTP/1.1" 404 288 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
