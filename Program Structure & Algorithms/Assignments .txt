@@ -1,0 +1,143 @@
+Assignment 5 (Hibbard Deletion)
+You will perform more experiments to test that the depth/height of a Binary Search Tree after M (Hibbard) deletions and insertions will be proportional to the square root of N where N is the size of the tree when M is large. The consequence of this is that deletion, search and insertion will all end up being O(N^1/2) instead of O(lg N) which is what we would prefer.
+
+The coding you need to do for this project is to implement the various delete cases. Insert operations are already coded. Please see the package edu.neu.coe.info6205.symbolTable.
+
+As usual, push your solution to your git repository for submission. Your submission should also include images of your test runs and any graphs or other evidence that you feel is appropriate.
+
+Assignment
+Project
+Attached Files:
+File Ranking System.pdf Ranking System.pdf - Alternative Formats (33.218 KB)
+File Traffic Simulation.pdf Traffic Simulation.pdf - Alternative Formats (28.441 KB)
+Please see the attached document for instructions. There are essentially two choices, each with two sub-choices:
+
+ranking system
+EPL or other sporting league;
+Bridge (hard -- only by agreement with me);
+simulation (hard)
+Traffic
+COVID-19 or other epidemic.
+Please don't attempt a hard problem unless you are a three-person team or have cleared it with me.
+
+
+
+Assignment
+Assignment 4 (Parallel sort)
+Please see the presentation on Assignment on Parallel Sorting under Course Materials/Course Documents/Exams. etc. 
+
+Your task is to implement a parallel sorting algorithm such that each partition of the array is sorted in parallel. You will consider two different schemes for deciding whether to sort in parallel.
+
+A cutoff (defaults to, say, 1000) which you will update according to the first argument in the command line when running. It's your job to experiment and come up with a good value for this cutoff. If there are fewer elements to sort than the cutoff, then you should use the system sort instead.
+Recursion depth or the number of available threads. Using this determination, you might decide on an ideal number (t) of separate threads (stick to powers of 2) and arrange for that number of partitions to be parallelized (by preventing recursion after the depth of lg t is reached).
+An appropriate combination of these.
+There is a Main class and the ParSort class in the sort.par package of the INFO6205 repository. The Main class can be used as is but the ParSort class needs to be implemented where you see "TODO..."
+
+Unless you have a good reason not to, you should just go along with the Java8-style future implementations provided for you in the class repository.
+
+You must prepare a report that shows the results of your experiments and draws a conclusion (or more) about the efficacy of this method of parallelizing sort. Your experiments should involve sorting arrays of sufficient size for the parallel sort to make a difference. You should run with many different array sizes (they must be sufficiently large to make parallel sorting worthwhile, obviously) and different cutoff schemes.
+
+For varying the number of threads available, you might want to consult the following resources:
+
+https://www.callicoder.com/java-8-completablefuture-tutorial/#a-note-about-executor-and-thread-pool
+https://stackoverflow.com/questions/36569775/how-to-set-forkjoinpool-with-the-desired-number-of-worker-threads-in-completable
+
+Good luck and enjoy.
+
+
+
+Test
+Mid-term Spring 2020, Section 3- Requires Respondus LockDown Browser
+You have 90 minutes for this exam. You may not submit after 95 minutes. Between those two you will lose points.
+
+Assignment
+Assignment 3 (Union-Find)
+Step 1: (a) Implement height-weighted Quick Union with Path Compression. For this, you will flesh out the class UF_HWQUPC. All you have to do is to fill in the sections marked with // TO BE IMPLEMENTED ... // ...END IMPLEMENTATION. [10 points]
+
+(b) Check that the unit tests for this class all work. You must show "green" test results in your submission (screenshot is OK). [5]
+
+Step 2: Using your implementation of UF_HWQUPC, develop a UF ("union-find") client that takes an integer value n from the command line to determine the number of "sites." Then generates random pairs of integers between 0 and n-1, calling connected() to determine if they are connected and union() if not. Loop until all sites are connected then print the number of connections generated. Package your program as a static method count() that takes n as the argument and returns the number of connections; and a main() that takes n from the command line, calls count() and prints the returned value. If you prefer, you can create a main program that doesn't require any input and runs the experiment for a fixed set of n values. Show evidence of your run(s). [22]
+
+Step 3: Confirm the hypothesis that the number of pairs generated to accomplish this (i.e. to reduce the number of components from n to 1) is ~ 1/2 n ln n where ln n is the natural logarithm of n? Justify your conclusion. [13]
+
+Don't forget to follow the submission guidelines. And to use sufficient (and sufficiently large) different values of n.
+
+
+
+
+
+
+Assignment
+Assignment 2 (Benchmarks)
+Your task for this assignment is in three parts.
+
+(Part 1) You are to implement the doRun (private) method of a class called Benchmark. Please see the skeleton class that I created in the repository. The API of this class is as follows:
+public class Benchmark<T> {
+  public Benchmark(UnaryOperator<T> fPre, Consumer<T> fRun, Consumer<T> fPost)
+  public Benchmark(UnaryOperator<T> fPre, Consumer<T> fRun)
+  public Benchmark(Consumer<T> fRun, Consumer<T> fPost)
+  public Benchmark(Consumer<T> f)
+  public double run(T t, int m)
+  public double run(Supplier<T> supplier, int m)
+}
+The function to be timed, hereinafter the "target" function, is the Consumer function fRun (or just f) passed in to one or other of the constructors. For example, you might create a function which sorts an array with n elements.
+
+The generic type T is that of the input to the target function.
+
+The first parameter to the first run method signature is the parameter that will, in turn, be passed to target function. In the second signature, supplier will be invoked each time to get a t which is passed to the other run method.
+
+The second parameter to the run function (m) is the number of times the target function will be called.
+
+The return value from run is the average number of milliseconds taken for each run of the target function.
+
+Don't forget to check your implementation by running the unit tests in BenchmarkTest.
+
+(Part 2) Implement InsertionSort (in the InsertionSort class) by simply looking up the insertion code used by Arrays.sort. You should use the helper.swap method although you could also just copy that from the same source code. In the main method of Benchmark, remove the reference to SelectionSort.
+(Part 3) Measure the running times of this sort, using four different initial array ordering situations: random, ordered, partially-ordered and reverse-ordered. I suggest that your arrays to be sorted are of type Integer. Use the doubling method for choosing n and test for at least five values of n. Draw any conclusions from your observations regarding the order of growth.
+As usual, the submission will be your entire project (clean, i.e. without the target and project folders). There are stubs and unit tests in the repository.
+
+Report on your observations and show screenshots of the runs and also the unit tests. Please note that you may have to adjust the required execution time for the insertion sort unit test(s) because your computer may not run at the same speed as mine.
+
+Further notes: you should use the System.nanoTime method to get the clock time. This isn't guaranteed to be accurate which is one of the reasons you should run the experiment several times for each value of n. Also, for each invocation of run, run the given target function ten times to get the system "warmed up" before you start the timing properly.
+
+The Sort interface takes care of copying the array when the sort(array) signature is called. It returns a new array as a result. The original array is unchanged. Therefore, you do not need to worry about the insertion-based sorts getting quicker because of the arrays getting more sorted (they don't).
+
+If you need clarification, ask on Slack.
+
+
+
+Assignment
+Assignment 1 (Random Walk)
+This assignment will continue building your algorithmic skills, albeit we haven't really got into any serious algorithms in class yet. It will also give you some experience with random number generation in Java.
+
+An important type of practical experiment is normally referred to as the "random walk" experiment.
+
+Imagine a drunken man who, starting out leaning against a lamp post in the middle of an open space, takes a series of steps of the same length l. The direction of these steps is randomly chosen from North, South, East or West. After n steps, how far (d), generally speaking, is the man from the lamp post? Note that d is the Euclidean distance of the man from the lamp-post.
+
+It turns out that there is a relationship between d, l and n which is typically applicable to many different types of stochastic (randomized) experiments. Your task is to implement the code for the experiment and, most importantly, to deduce the relationship.
+
+Please clone/pull from the class repository and work on RandomWalk.java and RandomWalkTest.java each of package randomwalk and each under the appropriate source directory. [You may have to remove other java files from the classpath in order to allow the whole project to compile, but hopefully not]. Once you have all the unit tests running, you can do the experiment by running RandomWalk as a main program (provide the value of n as the first argument).
+
+For this particular assignment, it is necessary but not sufficient to ensure that the unit tests all run. You must demonstrate via image files, graphs, whatever, what experiments you made in order to come up with the required expression. You will run the experiment for at least six values of n and will run each of these at least five times. That's to say, you will run the program at least 30 separate times.
+
+Feel free to change the main program so that it will run all your experiments in one shot instead of 30 different runs.
+
+Your submission should include:
+
+Your conclusion about the relationship between d, n and l;
+Your evidence to support that relationship (screen shot and/or graph and/or spreadsheet);
+Your code (RandomWalk.java plus anything else that you changed or created);
+A screen shot of the unit tests all passing.
+Please note: for this assignment, you do not need to set up github and push your files, as described in the general instructions for submission (Submitting Assignments). Note also, that common sense should tell you how d varies with l. Don't spend a lot of time agonizing over this aspect of the assignment. What we are primarily interested in is how d varies with n.
+
+
+
+Item
+Assignment 0
+The purpose of this assignment is to familiarize you with some of the functional constructs of Java8 which we will be using in other assignments. Go to the class repository: https://github.com/rchillyard/INFO6205, clone it and, in particular, take a look at https://github.com/rchillyard/INFO6205/blob/master/src/main/java/edu/neu/coe/info6205/functions/Newton.java.
+
+Thoroughly understand the code and run it with your own function. Submit the success message which the program will print (assuming you program it correctly). You will need to give the program the derivative of the function you have chosen. If you can't remember calculus, try searching for "what is the derivative of ..." where you include your function.
+
+This assignment is really just to get you started thinking about algorithms and ensuring that you have a working Java environment.
+
+There are many git clients out there which you can use: command line, gitHub client, Atlassian Source Tree, GitKraken, IntelliJ-IDEA, Eclipse, etc. This assignment will help you get used to cloning and working with source from git.
